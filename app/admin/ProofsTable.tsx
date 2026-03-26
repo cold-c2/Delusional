@@ -30,13 +30,13 @@ function renderProofThumb(url: string) {
   }
 
   // eslint-disable-next-line @next/next/no-img-element
-  return <img className="h-20 w-28 rounded bg-zinc-100 object-cover" src={url} alt="Proof" />;
+  return <img className="h-20 w-28 rounded bg-zinc-700 object-cover" src={url} alt="Proof" />;
 }
 
 export default function ProofsTable({ groups }: { groups: ProofGroup[] }) {
   if (groups.length === 0) {
     return (
-      <div className="rounded-2xl border bg-white p-5 text-sm text-zinc-600 shadow-sm">
+      <div className="rounded-2xl border bg-zinc-800 p-5 text-sm text-zinc-400 shadow-sm">
         No proofs yet.
       </div>
     );
@@ -45,10 +45,10 @@ export default function ProofsTable({ groups }: { groups: ProofGroup[] }) {
   return (
     <div className="space-y-6">
       {groups.map((g) => (
-        <div key={g.userId} className="overflow-hidden rounded-2xl border bg-white shadow-sm">
-          <div className="flex items-center justify-between gap-4 border-b bg-zinc-50 px-4 py-3 sm:px-5">
+        <div key={g.userId} className="overflow-hidden rounded-2xl border bg-zinc-800 shadow-sm">
+          <div className="flex items-center justify-between gap-4 border-b bg-zinc-700/50 px-4 py-3 sm:px-5">
             <div className="min-w-0">
-              <div className="truncate text-sm font-semibold text-zinc-900">
+              <div className="truncate text-sm font-semibold text-zinc-100">
                 {g.username ?? g.userId}
               </div>
               <div className="mt-0.5 text-xs text-zinc-500">{g.userId}</div>
@@ -60,20 +60,20 @@ export default function ProofsTable({ groups }: { groups: ProofGroup[] }) {
               <div key={t.assignedTaskId} className="px-4 py-4 sm:px-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-zinc-900">
+                    <div className="truncate text-sm font-medium text-zinc-100">
                       {t.taskTitle ?? "Untitled task"}
                     </div>
                     <div className="mt-1 text-xs text-zinc-500">
                       Assigned task:{" "}
                       <Link
-                        className="underline decoration-zinc-300 underline-offset-2 hover:text-zinc-700"
+                        className="underline decoration-zinc-600 underline-offset-2 hover:text-zinc-300"
                         href={`/task/${t.assignedTaskId}`}
                       >
                         {t.assignedTaskId}
                       </Link>
                     </div>
                   </div>
-                  <div className="shrink-0 text-xs text-zinc-600 tabular-nums">
+                  <div className="shrink-0 text-xs text-zinc-400 tabular-nums">
                     {t.proofs.length} proof{t.proofs.length === 1 ? "" : "s"}
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function ProofsTable({ groups }: { groups: ProofGroup[] }) {
                     .map((p) => (
                       <div key={p.id} className="flex flex-col gap-1">
                         {renderProofThumb(p.file_url!)}
-                        <div className="w-28 truncate text-[11px] text-zinc-500">
+                        <div className="w-28 truncate text-[11px] text-zinc-400">
                           {p.submitted_at
                             ? new Date(p.submitted_at).toLocaleString()
                             : ""}

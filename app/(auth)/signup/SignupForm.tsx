@@ -43,48 +43,48 @@ export default function SignupForm() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-4">
       <form
         onSubmit={onSubmit}
-        className="w-full max-w-sm rounded-2xl border bg-white p-6 shadow-sm"
+        className="w-full max-w-sm rounded-2xl border bg-zinc-800 p-6 shadow-sm"
       >
         <div>
-          <h1 className="text-xl font-semibold text-zinc-900">Sign up</h1>
-          <p className="mt-1 text-sm text-zinc-600">
+          <h1 className="text-xl font-semibold text-zinc-100">Sign up</h1>
+          <p className="mt-1 text-sm text-zinc-400">
             Create an account with email and password.
           </p>
         </div>
 
         <div className="mt-4 grid gap-3">
           <label className="grid gap-1.5">
-            <span className="text-sm font-medium text-zinc-900">Email</span>
+            <span className="text-sm font-medium text-zinc-100">Email</span>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               type="email"
               required
-              className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+              className="w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
               autoComplete="email"
             />
           </label>
 
           <label className="grid gap-1.5">
-            <span className="text-sm font-medium text-zinc-900">Password</span>
+            <span className="text-sm font-medium text-zinc-100">Password</span>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               type="password"
               required
-              className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+              className="w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
               autoComplete="new-password"
             />
           </label>
         </div>
 
         {error ? (
-          <div className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+          <div className="mt-3 rounded-lg border border-red-900 bg-red-900/20 px-3 py-2 text-sm text-red-400" role="alert">
             {error}
           </div>
         ) : null}
@@ -92,14 +92,14 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-zinc-700 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "Creating..." : "Sign up"}
         </button>
 
-        <div className="mt-4 text-center text-sm text-zinc-600">
+        <div className="mt-4 text-center text-sm text-zinc-400">
           Already have an account?{" "}
-          <Link className="font-medium text-zinc-900 hover:underline" href="/login">
+          <Link className="font-medium text-zinc-100 hover:underline" href="/login">
             Sign in
           </Link>
         </div>

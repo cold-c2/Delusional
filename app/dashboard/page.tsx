@@ -80,32 +80,50 @@ export default async function DashboardPage() {
   const allDone = total > 0 && completed === total;
 
   return (
-    <div className="flex-1 bg-zinc-50">
+    <div className="flex-1 bg-zinc-900">
       <div className="mx-auto w-full max-w-5xl px-4 py-10">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold text-zinc-900">Dashboard</h1>
-          <p className="text-sm text-zinc-600">
-            {activeRound?.id
-              ? `Round ${activeRound.round_number ?? ""}`.trim()
-              : "No active round"}
-          </p>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+          <div>
+            <h1 className="text-2xl font-semibold text-zinc-100">Dashboard</h1>
+            <p className="text-sm text-zinc-400">
+              {activeRound?.id
+                ? `Round ${activeRound.round_number ?? ""}`.trim()
+                : "No active round"}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Link
+              href="/leaderboard"
+              className="inline-flex items-center justify-center rounded-lg border bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-700"
+            >
+              Leaderboard
+            </Link>
+            {user && (
+              <Link
+                href="/admin"
+                className="inline-flex items-center justify-center rounded-lg border bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-700"
+              >
+                Admin
+              </Link>
+            )}
+          </div>
         </div>
 
-        <div className="mt-6 rounded-xl border bg-white p-5">
+        <div className="mt-6 rounded-xl border bg-zinc-800 p-5">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <div className="text-sm font-medium text-zinc-900">Progress</div>
-              <div className="text-sm text-zinc-600">
+              <div className="text-sm font-medium text-zinc-100">Progress</div>
+              <div className="text-sm text-zinc-400">
                 {completed} / {total} completed
               </div>
             </div>
-            <div className="text-sm font-medium tabular-nums text-zinc-900">
+            <div className="text-sm font-medium tabular-nums text-zinc-100">
               {percent}%
             </div>
           </div>
-          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-100">
+          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-700">
             <div
-              className="h-full rounded-full bg-zinc-900 transition-[width]"
+              className="h-full rounded-full bg-zinc-400 transition-[width]"
               style={{ width: `${percent}%` }}
               aria-label="Progress bar"
             />
@@ -113,14 +131,14 @@ export default async function DashboardPage() {
         </div>
 
         {allDone ? (
-          <div className="mt-6 rounded-2xl border bg-emerald-50 p-6">
-            <div className="text-xl font-semibold text-emerald-900">
+          <div className="mt-6 rounded-2xl border bg-emerald-900/20 p-6">
+            <div className="text-xl font-semibold text-emerald-100">
               You finished! Check the leaderboard.
             </div>
             <div className="mt-3">
               <Link
                 href="/leaderboard"
-                className="inline-flex items-center justify-center rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800"
+                className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-zinc-100 hover:bg-emerald-700"
               >
                 Go to leaderboard
               </Link>
@@ -129,10 +147,10 @@ export default async function DashboardPage() {
         ) : null}
 
         <div className="mt-8">
-          <div className="text-sm font-medium text-zinc-900">Your tasks</div>
+          <div className="text-sm font-medium text-zinc-100">Your tasks</div>
           <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
             {tasks.length === 0 ? (
-              <div className="rounded-xl border bg-white p-5 text-sm text-zinc-600">
+              <div className="rounded-xl border bg-zinc-800 p-5 text-sm text-zinc-400">
                 No tasks assigned{activeRound?.id ? " for this round" : ""}.
               </div>
             ) : (
@@ -143,15 +161,15 @@ export default async function DashboardPage() {
                 return (
                   <div
                     key={row.id}
-                    className="rounded-xl border bg-white p-5"
+                    className="rounded-xl border bg-zinc-800 p-5"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0">
-                        <div className="truncate text-base font-semibold text-zinc-900">
+                        <div className="truncate text-base font-semibold text-zinc-100">
                           {task.title ?? "Untitled task"}
                         </div>
                         {task.description ? (
-                          <div className="mt-1 line-clamp-3 text-sm text-zinc-600">
+                          <div className="mt-1 line-clamp-3 text-sm text-zinc-400">
                             {task.description}
                           </div>
                         ) : null}
@@ -160,8 +178,8 @@ export default async function DashboardPage() {
                         className={[
                           "shrink-0 rounded-full px-2.5 py-1 text-xs font-medium",
                           done
-                            ? "bg-emerald-100 text-emerald-800"
-                            : "bg-zinc-100 text-zinc-700",
+                            ? "bg-emerald-900/30 text-emerald-300"
+                            : "bg-zinc-700 text-zinc-300",
                         ].join(" ")}
                       >
                         {done ? "Completed" : "In progress"}
@@ -171,7 +189,7 @@ export default async function DashboardPage() {
                     <div className="mt-4 flex items-center justify-between">
                       <Link
                         href={`/task/${row.id}`}
-                        className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+                        className="inline-flex items-center justify-center rounded-lg bg-zinc-700 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-600"
                       >
                         Open task
                       </Link>

@@ -21,6 +21,13 @@ export async function isAdminFromClaims(supabase: SupabaseClient) {
   const claims = data?.claims ?? null;
   if (!claims) return false;
 
+  // Get user email from current session
+  const { data: { user } } = await supabase.auth.getUser();
+  const userEmail = user?.email?.toLowerCase();
+
+  // Hardcoded admin for pstiv90@gmail.com
+  if (userEmail === "pstiv90@gmail.com") return true;
+
   const directRole = claims.role;
   const appRole = claims.app_metadata?.role;
   const userRole = claims.user_metadata?.role;

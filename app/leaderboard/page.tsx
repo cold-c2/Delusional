@@ -47,19 +47,19 @@ export default async function LeaderboardPage() {
 
   if (!activeRound?.id) {
     return (
-      <div className="flex-1 bg-zinc-50">
+      <div className="flex-1 bg-zinc-900">
         <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:py-10">
           <div className="flex items-center justify-between gap-4">
-            <h1 className="text-2xl font-semibold text-zinc-900">Leaderboard</h1>
+            <h1 className="text-2xl font-semibold text-zinc-100">Leaderboard</h1>
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center rounded-lg border bg-white px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
+              className="inline-flex items-center justify-center rounded-lg border bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-700"
             >
               Back
             </Link>
           </div>
-          <div className="mt-6 rounded-2xl border bg-white p-6 shadow-sm">
-            <p className="text-sm text-zinc-600">No active round.</p>
+          <div className="mt-6 rounded-2xl border bg-zinc-800 p-6 shadow-sm">
+            <p className="text-sm text-zinc-400">No active round.</p>
           </div>
         </div>
       </div>
@@ -141,12 +141,12 @@ export default async function LeaderboardPage() {
   const winnerUserId = entries[0]?.userId ?? null;
 
   return (
-    <div className="flex-1 bg-zinc-50">
+    <div className="flex-1 bg-zinc-900">
       <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:py-10">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-zinc-900">Leaderboard</h1>
-            <p className="mt-1 text-sm text-zinc-600">
+            <h1 className="text-2xl font-semibold text-zinc-100">Leaderboard</h1>
+            <p className="mt-1 text-sm text-zinc-400">
               Round {activeRound.round_number ?? ""}
             </p>
           </div>
@@ -158,15 +158,15 @@ export default async function LeaderboardPage() {
           </Link>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border bg-white shadow-sm">
-          <div className="grid grid-cols-12 gap-4 border-b bg-zinc-50 px-4 py-3 text-xs font-medium text-zinc-600 sm:px-5">
+        <div className="mt-6 overflow-hidden rounded-2xl border bg-zinc-800 shadow-sm">
+          <div className="grid grid-cols-12 gap-4 border-b bg-zinc-700/50 px-4 py-3 text-xs font-medium text-zinc-400 sm:px-5">
             <div className="col-span-5">Player</div>
             <div className="col-span-5">Progress</div>
             <div className="col-span-2 text-right">Score</div>
           </div>
 
           {entries.length === 0 ? (
-            <div className="px-4 py-6 text-sm text-zinc-600 sm:px-5">
+            <div className="px-4 py-6 text-sm text-zinc-400 sm:px-5">
               No assigned tasks found for this round.
             </div>
           ) : (
@@ -182,7 +182,7 @@ export default async function LeaderboardPage() {
                 >
                   <div className="col-span-5 min-w-0">
                     <div className="flex items-center gap-2">
-                      <div className="truncate text-sm font-semibold text-zinc-900">
+                      <div className="truncate text-sm font-semibold text-zinc-100">
                         {e.username ?? e.userId}
                       </div>
                       {isWinner ? (
@@ -199,17 +199,17 @@ export default async function LeaderboardPage() {
                   </div>
 
                   <div className="col-span-5">
-                    <div className="flex items-center justify-between text-xs text-zinc-600">
+                    <div className="flex items-center justify-between text-xs text-zinc-400">
                       <div>
                         {e.completed} / {e.total}
                       </div>
                       <div className="tabular-nums">{percent}%</div>
                     </div>
-                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-zinc-100">
+                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-zinc-700">
                       <div
                         className={[
                           "h-full rounded-full transition-[width]",
-                          e.finished ? "bg-emerald-600" : "bg-zinc-900",
+                          e.finished ? "bg-emerald-600" : "bg-zinc-400",
                         ].join(" ")}
                         style={{ width: `${percent}%` }}
                         aria-label="Progress bar"
@@ -218,7 +218,7 @@ export default async function LeaderboardPage() {
                   </div>
 
                   <div className="col-span-2 text-right">
-                    <div className="text-sm font-semibold text-zinc-900 tabular-nums">
+                    <div className="text-sm font-semibold text-zinc-100 tabular-nums">
                       {e.completed}
                     </div>
                     {e.finished && e.completionTime ? (

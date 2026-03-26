@@ -76,7 +76,7 @@ export default async function TaskPage({
       // Using <img> avoids Next/Image domain config for Supabase storage URLs.
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        className="h-40 w-full rounded-lg bg-zinc-100 object-cover"
+        className="h-40 w-full rounded-lg bg-zinc-700 object-cover"
         src={url}
         alt="Proof"
         loading="lazy"
@@ -85,27 +85,27 @@ export default async function TaskPage({
   }
 
   return (
-    <div className="flex-1 bg-zinc-50">
+    <div className="flex-1 bg-zinc-900">
       <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:py-10">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="min-w-0">
-            <div className="text-sm text-zinc-600">Task</div>
-            <h1 className="truncate text-2xl font-semibold text-zinc-900">
+            <div className="text-sm text-zinc-400">Task</div>
+            <h1 className="truncate text-2xl font-semibold text-zinc-100">
               {task?.title ?? "Untitled task"}
             </h1>
           </div>
           <Link
             href="/dashboard"
-            className="shrink-0 inline-flex items-center justify-center rounded-lg border bg-white px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
+            className="shrink-0 inline-flex items-center justify-center rounded-lg border bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-700"
           >
             Back
           </Link>
         </div>
 
         {task?.description ? (
-          <div className="mt-5 rounded-2xl border bg-white p-5 shadow-sm">
-            <div className="text-sm font-semibold text-zinc-900">Description</div>
-            <p className="mt-2 whitespace-pre-wrap text-sm text-zinc-700">
+          <div className="mt-5 rounded-2xl border bg-zinc-800 p-5 shadow-sm">
+            <div className="text-sm font-semibold text-zinc-100">Description</div>
+            <p className="mt-2 whitespace-pre-wrap text-sm text-zinc-300">
               {task.description}
             </p>
           </div>
@@ -113,13 +113,13 @@ export default async function TaskPage({
 
         <div className="mt-5 rounded-2xl border bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between gap-4">
-            <div className="text-sm font-semibold text-zinc-900">Status</div>
+            <div className="text-sm font-semibold text-zinc-100">Status</div>
             <div
               className={[
                 "rounded-full px-2.5 py-1 text-xs font-medium",
                 assignedTask.completed
-                  ? "bg-emerald-100 text-emerald-800"
-                  : "bg-zinc-100 text-zinc-700",
+                  ? "bg-emerald-900/30 text-emerald-300"
+                  : "bg-zinc-700 text-zinc-300",
               ].join(" ")}
             >
               {assignedTask.completed ? "Completed" : "In progress"}
@@ -137,17 +137,17 @@ export default async function TaskPage({
         </div>
 
         <div className="mt-6">
-          <div className="text-sm font-semibold text-zinc-900">Proofs</div>
+          <div className="text-sm font-semibold text-zinc-100">Proofs</div>
           <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {proofs.length === 0 ? (
-              <div className="rounded-2xl border bg-white p-5 text-sm text-zinc-600 shadow-sm">
+              <div className="rounded-2xl border bg-zinc-800 p-5 text-sm text-zinc-400 shadow-sm">
                 No uploads yet.
               </div>
             ) : (
               proofs
                 .filter((p) => p.file_url)
                 .map((p) => (
-                  <div key={p.id} className="rounded-2xl border bg-white p-3 shadow-sm">
+                  <div key={p.id} className="rounded-2xl border bg-zinc-800 p-3 shadow-sm">
                     {renderProof(p.file_url!)}
                     <div className="mt-2 text-xs text-zinc-500">
                       {p.submitted_at

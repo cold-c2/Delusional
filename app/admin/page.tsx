@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -108,39 +109,45 @@ export default async function AdminPage() {
   }));
 
   return (
-    <div className="flex-1 bg-zinc-50">
+    <div className="flex-1 bg-zinc-900">
       <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-10">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-zinc-900">Admin</h1>
-            <p className="mt-1 text-sm text-zinc-600">
+            <h1 className="text-2xl font-semibold text-zinc-100">Admin</h1>
+            <p className="mt-1 text-sm text-zinc-400">
               Active round:{" "}
-              <span className="font-medium text-zinc-900">
+              <span className="font-medium text-zinc-100">
                 {activeRound?.id
                   ? `#${activeRound.round_number ?? ""}`.trim() || "Active"
                   : "None"}
               </span>
             </p>
           </div>
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center justify-center rounded-lg border bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-700"
+          >
+            Back to Dashboard
+          </Link>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <div className="text-sm font-semibold text-zinc-900">Start new round</div>
+          <div className="rounded-2xl border bg-zinc-800 p-5 shadow-sm">
+            <div className="text-sm font-semibold text-zinc-100">Start new round</div>
             <form action={startNewRoundAction} className="mt-4 flex gap-3">
               <input
                 name="round_number"
                 placeholder="Round # (optional)"
-                className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+                className="w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
               />
-              <button className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">
+              <button className="rounded-lg bg-zinc-700 px-4 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-600">
                 Start
               </button>
             </form>
           </div>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <div className="text-sm font-semibold text-zinc-900">Assign tasks to all users</div>
+          <div className="rounded-2xl border bg-zinc-800 p-5 shadow-sm">
+            <div className="text-sm font-semibold text-zinc-100">Assign tasks to all users</div>
             <form action={assignTasksToAllUsersAction} className="mt-4 flex gap-3">
               <input
                 name="count"
@@ -148,34 +155,34 @@ export default async function AdminPage() {
                 min={1}
                 step={1}
                 placeholder="X tasks per user"
-                className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+                className="w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
                 required
               />
-              <button className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">
+              <button className="rounded-lg bg-zinc-700 px-4 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-600">
                 Assign
               </button>
             </form>
-            <p className="mt-2 text-xs text-zinc-500">
+            <p className="mt-2 text-xs text-zinc-400">
               Uses `profiles` as the list of users. Skips tasks already assigned in the active round.
             </p>
           </div>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm lg:col-span-2">
-            <div className="text-sm font-semibold text-zinc-900">Create a task (active round)</div>
+          <div className="rounded-2xl border bg-zinc-800 p-5 shadow-sm lg:col-span-2">
+            <div className="text-sm font-semibold text-zinc-100">Create a task (active round)</div>
             <form action={createTaskAction} className="mt-4 grid grid-cols-1 gap-3">
               <input
                 name="title"
                 placeholder="Title"
-                className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+                className="w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
                 required
               />
               <textarea
                 name="description"
                 placeholder="Description"
-                className="min-h-28 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/10"
+                className="min-h-28 w-full rounded-lg border bg-zinc-700 border-zinc-600 px-3 py-2 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-zinc-500/20 placeholder-zinc-400"
               />
               <div>
-                <button className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">
+                <button className="rounded-lg bg-zinc-700 px-4 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-600">
                   Create task
                 </button>
               </div>
@@ -184,25 +191,25 @@ export default async function AdminPage() {
         </div>
 
         <div className="mt-10">
-          <div className="text-sm font-semibold text-zinc-900">Recent tasks</div>
-          <div className="mt-3 overflow-hidden rounded-2xl border bg-white shadow-sm">
-            <div className="grid grid-cols-12 gap-4 border-b bg-zinc-50 px-4 py-3 text-xs font-medium text-zinc-600 sm:px-5">
+          <div className="text-sm font-semibold text-zinc-100">Recent tasks</div>
+          <div className="mt-3 overflow-hidden rounded-2xl border bg-zinc-800 shadow-sm">
+            <div className="grid grid-cols-12 gap-4 border-b bg-zinc-700/50 px-4 py-3 text-xs font-medium text-zinc-400 sm:px-5">
               <div className="col-span-7">Title</div>
               <div className="col-span-3">Round</div>
               <div className="col-span-2 text-right">Created</div>
             </div>
             {(tasks ?? []).length === 0 ? (
-              <div className="px-4 py-6 text-sm text-zinc-600 sm:px-5">No tasks.</div>
+              <div className="px-4 py-6 text-sm text-zinc-400 sm:px-5">No tasks.</div>
             ) : (
               (tasks ?? []).map((t: any) => (
                 <div
                   key={t.id}
                   className="grid grid-cols-12 gap-4 border-b last:border-b-0 px-4 py-4 text-sm sm:px-5"
                 >
-                  <div className="col-span-7 truncate font-medium text-zinc-900">
+                  <div className="col-span-7 truncate font-medium text-zinc-100">
                     {t.title ?? "Untitled"}
                   </div>
-                  <div className="col-span-3 text-zinc-600 truncate">
+                  <div className="col-span-3 text-zinc-400 truncate">
                     {t.round_id === activeRound?.id ? "Active" : t.round_id}
                   </div>
                   <div className="col-span-2 text-right text-zinc-500 text-xs">
@@ -215,7 +222,7 @@ export default async function AdminPage() {
         </div>
 
         <div className="mt-10">
-          <div className="text-sm font-semibold text-zinc-900">Proof uploads</div>
+          <div className="text-sm font-semibold text-zinc-100">Proof uploads</div>
           <div className="mt-3">
             <ProofsTable groups={proofGroups as any} />
           </div>
